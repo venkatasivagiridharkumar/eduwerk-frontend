@@ -8,67 +8,71 @@ export default function Home() {
       <section className="announce">
         <span className="tag">NEW</span>
         <p>
-          Announcing OpenAI Academy x NxtWave Buildathon —
-          India’s biggest GenAI challenge for students
+          Powering the next generation of top software engineers — learn, build, and get hired 🚀
         </p>
         <button className="link">Know more →</button>
       </section>
 
-      {/* HERO */}
-      <section className="hero">
-        <div className="hero-text">
-          <h1>
-            Designed to transform you<br />
-            into a highly skilled<br />
-            Software Professional
-          </h1>
+     
+<section className="program-choice">
+  <div className="program-box">
+    <span className="program-tag">POST 12TH / DIPLOMA</span>
 
-          <p>
-            Learn like top IITians and achieve high-paid
-            software jobs with industry-ready programs.
-          </p>
+    <h3>Start Early. Build Strong Foundations.</h3>
 
-          <div className="hero-meta">
-            <div>
-              <strong>NEXT BATCH</strong>
-              <span>Starts Soon</span>
-            </div>
-            <div>
-              <strong>SEATS</strong>
-              <span>Limited</span>
-            </div>
-          </div>
+    <p className="program-desc">
+      Designed for students who want to enter software careers right
+      after Intermediate or Diploma with structured, long-term learning.
+    </p>
 
-          <div className="hero-actions">
-            <button className="primary">Request Callback</button>
-            <button className="secondary">Know More</button>
-          </div>
-        </div>
+    <ul className="program-list">
+      <li>PCM • ICSE • CBSE • Any Recognised Board</li>
+      <li>Hands-on coding from day one</li>
+      <li>Mentor-guided learning</li>
+    </ul>
 
-        <div className="hero-visual">
-          <div className="orb blue" />
-          <div className="orb violet" />
-        </div>
-      </section>
+    <button className="primary">Request Callback</button>
+  </div>
 
-      {/* PROGRAM CARDS */}
-      <section className="programs">
-        <ProgramCard
-          title="Post 12th / Intermediate"
-          subtitle="PCM • ICSE • CBSE • Any Board"
-          desc="A structured journey into software engineering from day one."
-        />
-        <ProgramCard
-          title="Graduates / Final Year"
-          subtitle="Any Branch or Degree"
-          desc="A proven program to make you a software developer."
-        />
-        <ProgramCard
-          title="NIAT Universities"
-          subtitle="At 10+ Universities Across India"
-          desc="Industry-ready upskilling at collaborating universities."
-        />
-      </section>
+  <div className="program-box highlight">
+    <span className="program-tag">UG / GRADUATES</span>
+
+    <h3>Become an Industry-Ready Software Developer.</h3>
+
+    <p className="program-desc">
+      A proven upskilling program for college students and graduates aiming for high-paying software roles at top companies
+    </p>
+
+    <ul className="program-list">
+      <li>Any branch or degree</li>
+      <li>Real-world projects & interview prep</li>
+      <li>Placement & career support</li>
+    </ul>
+
+    <button className="primary">Explore Program</button>
+  </div>
+</section>
+
+      <section className="trusted-section">
+  <div className="trusted-container">
+    <h2 className="trusted-heading">
+      <span>2000+</span> Companies have hired <strong>NxtWave®</strong> learners
+    </h2>
+
+    <div className="logo-grid">
+      {/* Row 1 */}
+      <img src="/logos/google.svg" alt="Google" />
+      <img src="/logos/amazon.svg" alt="Amazon" />
+      <img src="/logos/nvidia.svg" alt="NVIDIA" />
+      <img src="/logos/accenture.svg" alt="Accenture" />
+      <img src="/logos/deloitte.svg" alt="Deloitte" />
+      <img src="/logos/bankofamerica.svg" alt="Bank of America" />
+      <img src="/logos/bosch.svg" alt="Bosch" />
+
+      {/* Continue logos as needed */}
+    </div>
+  </div>
+</section>
 
       {/* TRUST */}
       <section className="trust">
@@ -107,14 +111,4 @@ export default function Home() {
   );
 }
 
-/* CARD COMPONENT */
-function ProgramCard({ title, subtitle, desc }) {
-  return (
-    <div className="program-card">
-      <h3>{title}</h3>
-      <span>{subtitle}</span>
-      <p>{desc}</p>
-      <button className="link">Know More →</button>
-    </div>
-  );
-}
+

@@ -1,0 +1,88 @@
+/* FULL SCREEN */
+.playground {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  min-height: 100vh;
+  padding: 24px 32px;
+  gap: 24px;
+  background: #f1f5f9;
+  box-sizing: border-box;
+}
+
+/* LEFT PANEL */
+.problem-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  overflow-y: auto;
+}
+
+.problem-panel h4 {
+  margin-top: 18px;
+}
+
+.testcase {
+  margin-top: 10px;
+  background: #f8fafc;
+  padding: 14px;
+  border-radius: 10px;
+}
+
+/* RIGHT PANEL */
+.editor-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 820px;
+}
+
+/* TOOLBAR */
+.editor-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* SELECT */
+.language-select {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  font-weight: 600;
+}
+
+/* RUN BUTTON */
+.run-btn {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.run-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* EDITOR WRAPPER */
+.editor-wrapper {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #334155;
+}
+
+/* OUTPUT */
+.output-box {
+  background: #020617;
+  color: #e5e7eb;
+  border-radius: 16px;
+  border: 1px solid #334155;
+  padding: 14px;
+  max-height: 140px;
+  overflow-y: auto;
+}
