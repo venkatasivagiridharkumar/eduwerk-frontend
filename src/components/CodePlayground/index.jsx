@@ -37,6 +37,14 @@ const CodePlayground = () => {
     setLoading(false);
   };
 
+  const saveCode = () => {
+    alert("Code saved successfully 💾");
+  };
+
+  const shareCode = () => {
+    alert("Share link generated 🔗");
+  };
+
   return (
     <div className="playground">
       {/* LEFT PANEL */}
@@ -54,7 +62,7 @@ const CodePlayground = () => {
         <pre className="testcase">
 Input:
 None
-<br/>
+
 Output:
 Hello World
         </pre>
@@ -62,6 +70,7 @@ Hello World
 
       {/* RIGHT PANEL */}
       <div className="editor-panel">
+        {/* TOP TOOLBAR */}
         <div className="editor-toolbar">
           <select
             className="language-select"
@@ -72,32 +81,40 @@ Hello World
             <option value="java">Java</option>
           </select>
 
-          <button className="run-btn" onClick={runCode} disabled={loading}>
-            ▶ Run
-          </button>
+          <div className="toolbar-right">
+            <button className="ai-btn">🤖 Ask AI</button>
+            <button className="doubt-btn">❓ Ask Doubt</button>
+          </div>
         </div>
 
-        {/* MONACO EDITOR */}
-        <div className="editor-wrapper">
-          <Editor
-            height="420px"
-            language={language}
-            value={code}
-            theme="vs-dark"
-            onChange={(value) => setCode(value || "")}
-            options={{
-              fontSize: 14,
-              minimap: { enabled: false },
-              scrollBeyondLastLine: false,
-              automaticLayout: true,
-              wordWrap: "off",
-              suggestOnTriggerCharacters: true,
-              quickSuggestions: true,
-              tabSize: 2,
-              lineNumbers: "on"
-            }}
-          />
-        </div>
+        {/* EDITOR */}
+        {/* EDITOR */}
+<div className="editor-wrapper">
+  <Editor
+    height="100%"
+    language={language}
+    value={code}
+    theme="vs-dark"
+    onChange={(value) => setCode(value || "")}
+    options={{
+      fontSize: 14,
+      minimap: { enabled: false },
+      scrollBeyondLastLine: false,
+      automaticLayout: true,
+      quickSuggestions: true,
+      tabSize: 2,
+      lineNumbers: "on"
+    }}
+  />
+
+  {/* INSIDE-EDITOR ACTION BAR */}
+  <div className="editor-overlay-actions">
+    <button className="save-btn" onClick={saveCode}>💾 Save</button>
+    <button className="share-btn" onClick={shareCode}>🔗 Share</button>
+    <button className="run-btn" onClick={runCode} disabled={loading}>▶ Run</button>
+  </div>
+</div>
+
 
         {/* OUTPUT */}
         <div className="output-box">

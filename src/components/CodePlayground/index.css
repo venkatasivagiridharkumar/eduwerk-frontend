@@ -1,22 +1,60 @@
-/* FULL SCREEN */
 .playground {
   display: grid;
   grid-template-columns: 40% 60%;
-  min-height: 100vh;
+  height: 100vh;              /* 🔒 HARD LOCK */
   padding: 24px 32px;
   gap: 24px;
   background: #f1f5f9;
   box-sizing: border-box;
+  overflow: hidden;           /* 🔑 prevent page growth */
 }
 
-/* LEFT PANEL */
+
 .problem-panel {
   background: #ffffff;
   border-radius: 16px;
   padding: 28px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-  overflow-y: auto;
+
+  height: 90%;               /* fill grid cell */
+  overflow-y: auto;           /* ✅ internal scrollbar */
 }
+/* TOOLBAR GROUPING */
+.toolbar-left,
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ASK AI BUTTON */
+.ai-btn {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ASK DOUBT BUTTON */
+.doubt-btn {
+  background: #e2e8f0;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ai-btn:hover,
+.doubt-btn:hover {
+  opacity: 0.9;
+}
+
+
 
 .problem-panel h4 {
   margin-top: 18px;
@@ -85,4 +123,73 @@
   padding: 14px;
   max-height: 140px;
   overflow-y: auto;
+}
+
+/* BOTTOM EDITOR ACTION BAR */
+.editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+/* SAVE */
+.save-btn {
+  background: #e2e8f0;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* SHARE */
+.share-btn {
+  background: #38bdf8;
+  color: #020617;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* RUN (PRIMARY) */
+.run-btn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ffffff;
+  border: none;
+  padding: 8px 22px;
+  border-radius: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.run-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+/* EDITOR WRAPPER — RELATIVE */
+.editor-wrapper {
+  position: relative;
+  height: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #334155;
+}
+
+/* INSIDE EDITOR ACTION BAR */
+.editor-overlay-actions {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+/* Make Monaco leave space so buttons don’t cover code */
+.editor-wrapper .monaco-editor {
+  padding-bottom: 50px;
 }
