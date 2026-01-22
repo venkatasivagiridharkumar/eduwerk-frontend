@@ -1,41 +1,63 @@
 import { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
 import "./index.css";
-import eduwerklogo from "../../assets/logos/edu-werk academy.png";
+import buhonoxLogo from "../../assets/logos/Buhonox-logo.png";
 
-const navItems = ["Home", "Programs", "Reviews", "Hire with Us"];
+/* CENTRAL ROUTE CONFIG — scalable */
+const navItems = [
+  { label: "Home", path: "/" },
+  { label: "About", path: "/about" },
+  { label: "Program", path: "/program" },
+  { label: "Reviews", path: "/reviews" },
+  { label: "Hire with Us", path: "/hire" }
+];
 
 export default function Header() {
-  const [active, setActive] = useState("Home");
   const [open, setOpen] = useState(false);
+
+  const closeMenu = () => setOpen(false);
 
   return (
     <>
+      {/* ================= HEADER ================= */}
       <header className="glass-header">
         <div className="glass-nav">
 
-        
+          {/* LOGO */}
           <div className="glass-logo">
-            <img src={eduwerklogo} alt="Edu Werk Academy" />
+            <Link to="/" onClick={closeMenu}>
+              <img src={buhonoxLogo} alt="Buhonox Academy" />
+            </Link>
           </div>
 
-          
+          {/* DESKTOP NAV */}
           <nav className="glass-links">
-            {navItems.map(item => (
-              <button
-                key={item}
-                className={`glass-link ${active === item ? "active" : ""}`}
-                onClick={() => setActive(item)}
+            {navItems.map(({ label, path }) => (
+              <NavLink
+                key={label}
+                to={path}
+                end
+                className={({ isActive }) =>
+                  `glass-link ${isActive ? "active" : ""}`
+                }
               >
-                {item}
-              </button>
+                {label}
+              </NavLink>
             ))}
           </nav>
+
+          {/* ACTIONS */}
           <div className="glass-actions">
-            <button className="glass-login">Login</button>
+            <Link to="/login" onClick={closeMenu}>
+              <button className="glass-login">Login</button>
+            </Link>
+
+            {/* BURGER */}
             <button
               className={`glass-burger ${open ? "open" : ""}`}
               onClick={() => setOpen(!open)}
-              aria-label="Menu"
+              aria-label="Toggle Menu"
+              aria-expanded={open}
             >
               <span />
               <span />
@@ -45,19 +67,20 @@ export default function Header() {
         </div>
       </header>
 
-     
+      {/* ================= MOBILE MENU ================= */}
       <div className={`glass-mobile ${open ? "show" : ""}`}>
-        {navItems.map(item => (
-          <button
-            key={item}
-            className={`glass-mobile-link ${active === item ? "active" : ""}`}
-            onClick={() => {
-              setActive(item);
-              setOpen(false);
-            }}
+        {navItems.map(({ label, path }) => (
+          <NavLink
+            key={label}
+            to={path}
+            end
+            className={({ isActive }) =>
+              `glass-mobile-link ${isActive ? "active" : ""}`
+            }
+            onClick={closeMenu}
           >
-            {item}
-          </button>
+            {label}
+          </NavLink>
         ))}
       </div>
     </>

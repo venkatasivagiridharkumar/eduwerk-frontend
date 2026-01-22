@@ -1,195 +1,162 @@
-.playground {
+.playground-root {
   display: grid;
-  grid-template-columns: 40% 60%;
-  height: 100vh;              /* 🔒 HARD LOCK */
-  padding: 24px 32px;
-  gap: 24px;
-  background: #f1f5f9;
-  box-sizing: border-box;
-  overflow: hidden;           /* 🔑 prevent page growth */
+  grid-template-columns: 38% 62%;
+  height: 100vh;
+  padding: 32px;
+  gap: 28px;
+  background: #f5f5f7;
 }
 
-
+/* LEFT */
 .problem-panel {
   background: #ffffff;
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-
-  height: 90%;               /* fill grid cell */
-  overflow-y: auto;           /* ✅ internal scrollbar */
-}
-/* TOOLBAR GROUPING */
-.toolbar-left,
-.toolbar-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  border-radius: 28px;
+  padding: 36px;
+  box-shadow:
+    0 6px 16px rgba(0,0,0,0.06),
+    0 28px 64px rgba(0,0,0,0.12);
+  overflow-y: auto;
 }
 
-/* ASK AI BUTTON */
-.ai-btn {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  color: #fff;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 10px;
+.problem-panel h3 {
+  font-size: 22px;
   font-weight: 600;
-  cursor: pointer;
+  margin-bottom: 12px;
 }
 
-/* ASK DOUBT BUTTON */
-.doubt-btn {
-  background: #e2e8f0;
-  color: #0f172a;
-  border: 1px solid #cbd5e1;
-  padding: 8px 14px;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
+.problem-desc {
+  font-size: 15px;
+  color: #6e6e73;
+  margin-bottom: 24px;
 }
 
-.ai-btn:hover,
-.doubt-btn:hover {
-  opacity: 0.9;
+.problem-block {
+  margin-bottom: 20px;
 }
 
-
-
-.problem-panel h4 {
-  margin-top: 18px;
+.problem-block h4 {
+  font-size: 14px;
+  margin-bottom: 6px;
 }
 
-.testcase {
-  margin-top: 10px;
-  background: #f8fafc;
+.problem-block pre {
+  background: #f5f5f7;
   padding: 14px;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
-/* RIGHT PANEL */
+/* RIGHT */
 .editor-panel {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-width: 820px;
+  gap: 18px;
 }
 
-/* TOOLBAR */
-.editor-toolbar {
+/* TOP BAR */
+.editor-topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* SELECT */
-.language-select {
-  padding: 8px 16px;
-  border-radius: 10px;
-  border: 1px solid #cbd5e1;
+.editor-topbar select {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid #d2d2d7;
   background: #fff;
   font-weight: 600;
 }
 
-/* RUN BUTTON */
-.run-btn {
-  background: linear-gradient(135deg, #f97316, #fb923c);
-  color: #fff;
-  border: none;
-  padding: 10px 22px;
-  border-radius: 12px;
-  font-weight: 700;
+.top-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.ghost-btn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid #d2d2d7;
+  background: #ffffff;
+  font-weight: 600;
   cursor: pointer;
 }
 
-.run-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+/* EDITOR */
+.editor-wrapper {
+  position: relative;
+  height: 420px;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid #1f2937;
+  box-shadow:
+    0 6px 16px rgba(0,0,0,0.08);
 }
 
-/* EDITOR WRAPPER */
-.editor-wrapper {
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid #334155;
+.editor-wrapper .monaco-editor {
+  padding-bottom: 64px;
+}
+
+/* EDITOR ACTIONS */
+.editor-actions {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  display: flex;
+  gap: 10px;
+}
+
+.soft-btn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-btn {
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 700;
+  color: #1d1d1f;
+  background: linear-gradient(
+    135deg,
+    #ff7a00,
+    #ff8f1f,
+    #ffc06a
+  );
+  box-shadow:
+    0 12px 28px rgba(255,122,0,0.45);
+  cursor: pointer;
+}
+
+.primary-btn:disabled {
+  opacity: 0.6;
 }
 
 /* OUTPUT */
 .output-box {
   background: #020617;
   color: #e5e7eb;
-  border-radius: 16px;
-  border: 1px solid #334155;
-  padding: 14px;
-  max-height: 140px;
+  border-radius: 20px;
+  padding: 18px;
+  font-size: 14px;
+  max-height: 160px;
   overflow-y: auto;
 }
 
-/* BOTTOM EDITOR ACTION BAR */
-.editor-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  padding: 12px 0;
+.output-box span {
+  font-size: 12px;
+  color: #9ca3af;
+  display: block;
+  margin-bottom: 6px;
 }
 
-/* SAVE */
-.save-btn {
-  background: #e2e8f0;
-  color: #0f172a;
-  border: 1px solid #cbd5e1;
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* SHARE */
-.share-btn {
-  background: #38bdf8;
-  color: #020617;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-/* RUN (PRIMARY) */
-.run-btn {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: #ffffff;
-  border: none;
-  padding: 8px 22px;
-  border-radius: 10px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.run-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-/* EDITOR WRAPPER — RELATIVE */
-.editor-wrapper {
-  position: relative;
-  height: 420px;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid #334155;
-}
-
-/* INSIDE EDITOR ACTION BAR */
-.editor-overlay-actions {
-  position: absolute;
-  bottom: 10px;
-  right: 12px;
-  display: flex;
-  gap: 10px;
-  z-index: 10;
-}
-
-/* Make Monaco leave space so buttons don’t cover code */
-.editor-wrapper .monaco-editor {
-  padding-bottom: 50px;
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .playground-root {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
 }

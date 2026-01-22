@@ -25,11 +25,12 @@ const CodePlayground = () => {
       });
 
       const data = await res.json();
-
-      if (data.run?.stdout) setOutput(data.run.stdout);
-      else if (data.run?.stderr) setOutput(data.run.stderr);
-      else if (data.compile?.stderr) setOutput(data.compile.stderr);
-      else setOutput("No output");
+      setOutput(
+        data.run?.stdout ||
+        data.run?.stderr ||
+        data.compile?.stderr ||
+        "No output"
+      );
     } catch {
       setOutput("Execution failed");
     }
@@ -37,43 +38,41 @@ const CodePlayground = () => {
     setLoading(false);
   };
 
-  const saveCode = () => {
-    alert("Code saved successfully 💾");
-  };
-
-  const shareCode = () => {
-    alert("Share link generated 🔗");
-  };
-
   return (
-    <div className="playground">
-      {/* LEFT PANEL */}
-      <div className="problem-panel">
-        <h3>🧩 Problem</h3>
-        <p>Write a program to print <b>Hello World</b>.</p>
+    <div className="playground-root">
 
-        <h4>Input</h4>
-        <p>No input required</p>
+      {/* LEFT — PROBLEM */}
+      <aside className="problem-panel">
+        <h3>Problem</h3>
 
-        <h4>Output</h4>
-        <p>Hello World</p>
+        <p className="problem-desc">
+          Write a program to print <b>Hello World</b>.
+        </p>
 
-        <h4>Sample Test Case</h4>
-        <pre className="testcase">
-Input:
-None
+        <div className="problem-block">
+          <h4>Input</h4>
+          <p>No input required</p>
+        </div>
 
-Output:
+        <div className="problem-block">
+          <h4>Output</h4>
+          <p>Hello World</p>
+        </div>
+
+        <div className="problem-block">
+          <h4>Sample</h4>
+          <pre>
 Hello World
-        </pre>
-      </div>
+          </pre>
+        </div>
+      </aside>
 
-      {/* RIGHT PANEL */}
-      <div className="editor-panel">
-        {/* TOP TOOLBAR */}
-        <div className="editor-toolbar">
+      {/* RIGHT — EDITOR */}
+      <section className="editor-panel">
+
+        {/* TOP BAR */}
+        <div className="editor-topbar">
           <select
-            className="language-select"
             value={language}
             onChange={e => setLanguage(e.target.value)}
           >
@@ -81,47 +80,47 @@ Hello World
             <option value="java">Java</option>
           </select>
 
-          <div className="toolbar-right">
-            <button className="ai-btn">🤖 Ask AI</button>
-            <button className="doubt-btn">❓ Ask Doubt</button>
+          <div className="top-actions">
+            <button className="ghost-btn">Ask AI</button>
+            <button className="ghost-btn">Ask Doubt</button>
           </div>
         </div>
 
         {/* EDITOR */}
-        {/* EDITOR */}
-<div className="editor-wrapper">
-  <Editor
-    height="100%"
-    language={language}
-    value={code}
-    theme="vs-dark"
-    onChange={(value) => setCode(value || "")}
-    options={{
-      fontSize: 14,
-      minimap: { enabled: false },
-      scrollBeyondLastLine: false,
-      automaticLayout: true,
-      quickSuggestions: true,
-      tabSize: 2,
-      lineNumbers: "on"
-    }}
-  />
+        <div className="editor-wrapper">
+          <Editor
+            height="100%"
+            language={language}
+            value={code}
+            theme="vs-dark"
+            onChange={v => setCode(v || "")}
+            options={{
+              fontSize: 14,
+              minimap: { enabled: false },
+              scrollBeyondLastLine: false,
+              automaticLayout: true
+            }}
+          />
 
-  {/* INSIDE-EDITOR ACTION BAR */}
-  <div className="editor-overlay-actions">
-    <button className="save-btn" onClick={saveCode}>💾 Save</button>
-    <button className="share-btn" onClick={shareCode}>🔗 Share</button>
-    <button className="run-btn" onClick={runCode} disabled={loading}>▶ Run</button>
-  </div>
-</div>
-
+          <div className="editor-actions">
+            <button className="soft-btn">Save</button>
+            <button className="soft-btn">Share</button>
+            <button
+              className="primary-btn"
+              onClick={runCode}
+              disabled={loading}
+            >
+              Run
+            </button>
+          </div>
+        </div>
 
         {/* OUTPUT */}
         <div className="output-box">
-          <strong>Output</strong>
+          <span>Output</span>
           <pre>{output}</pre>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
