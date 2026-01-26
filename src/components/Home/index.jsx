@@ -314,14 +314,94 @@ This isn’t passive learning. It’s an always-on career engine that converts p
           Meghna Barnwal • Software Development Engineer (Intern)
         </p>
       </section>
+     <section className="journey-footer-root">
+      <div className="journey-footer-container">
 
-      {/* FINAL CTA */}
-      <section className="final-cta">
-        <h2>Start your journey with confidence.</h2>
-        <button className="primary large">
-          Request a Callback
-        </button>
-      </section>
+        {/* LEFT — DECISION */}
+        <div className="journey-left">
+          <h1>
+            Start your journey
+            <br />
+            <span>with confidence.</span>
+          </h1>
+
+          <p className="journey-desc">
+            Speak with a program advisor and get clarity on courses,
+            placements, and your next steps.
+          </p>
+
+          <button className="otp-button">
+            Request a Callback
+          </button>
+
+          <div className="journey-note">
+            📞 Pan-India support · Free guidance · No spam
+          </div>
+        </div>
+  
+    <div className="woolf-right">
+          <h2>Build your future with Buhonox Academy</h2>
+
+          <p>
+            After completing your degree, Buhonox Academy equips you with
+            industry-relevant skills, real-world projects, and expert mentorship.
+          </p>
+
+          <p>
+            Our structured career preparation and placement support help you
+            secure roles with leading MNCs — turning your degree into a
+            career in hand.
+          </p>
+        </div>
+       
+
+      </div>
+
+    </section>
+
+
+
+
+  
+
+<section className="updates-root">
+  <div className="updates-container">
+    <div className="updates-grid">
+      
+      {/* LEFT: CONTENT */}
+      <div className="updates-content">
+        <div className="updates-brand">BUHONOX ACADEMY</div>
+
+        <h1>
+          Stay ahead.
+          <br />
+          <span>Learn what matters.</span>
+        </h1>
+
+        <p className="updates-subtitle">
+          Career programs, placement updates, and industry insights —
+          delivered thoughtfully, only when it matters.
+        </p>
+
+        <div className="updates-form">
+          <input type="email" placeholder="name@email.com" />
+          <button className="updates-btn">Subscribe</button>
+        </div>
+
+        <label className="updates-consent">
+          <input type="checkbox" />
+          I agree to receive communications from Buhonox Academy
+        </label>
+      </div>
+
+      {/* RIGHT: IMAGE */}
+      <div className="updates-visual" />
+
+    </div>
+  </div>
+</section>
+
+       
 
     </main>
   );

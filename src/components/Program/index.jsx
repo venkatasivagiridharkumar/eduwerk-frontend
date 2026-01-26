@@ -12,6 +12,7 @@ import {
   HiOutlineSparkles,
   HiOutlineBriefcase
 } from "react-icons/hi2";
+import {Link} from "react-router-dom";
 
 import { HiArrowLongDown } from "react-icons/hi2";
 
@@ -61,7 +62,6 @@ const Program = () => {
             <div className="phone-row">
               <span className="code">+91</span>
               <input placeholder="Enter mobile number" />
-              <button type="button" className="otp-btn">OTP</button>
             </div>
 
             <label>Current Status</label>
@@ -72,7 +72,7 @@ const Program = () => {
               <option>Working Professional</option>
             </select>
 
-            <button className="primary-cta">
+            <button className="otp-button">
               Reserve my seat
             </button>
 
@@ -151,9 +151,9 @@ const Program = () => {
             They get selected.
           </p>
 
-          <button className="gap-buhonox-cta">
+          <Link to="/register"> <button className="otp-button">
             Join Buhonox
-          </button>
+          </button></Link>
         </div>
 
       </div>

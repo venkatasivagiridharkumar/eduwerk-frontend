@@ -1,28 +1,68 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./index.css";
 import buhonoxLogo from "../../assets/logos/Buhonox-logo.png";
 
-/* CENTRAL ROUTE CONFIG — scalable */
+import {
+  FiTarget,
+  FiUsers,
+  FiAward,
+  FiCode,
+  FiCpu,
+  FiTrendingUp
+} from "react-icons/fi";
+
+
 const navItems = [
   { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
-  { label: "Program", path: "/program" },
+  {
+    label: "About Buhonox",
+    path: "/about",
+    children: [
+      { label: "Our Mission", path: "/about#mission", icon: <FiTarget /> },
+      { label: "Mentors & Faculty", path: "/about#mentors", icon: <FiUsers /> },
+      { label: "University Partners", path: "/partnerships", icon: <FiAward /> }
+    ]
+  },
+  {
+    label: "Programs",
+    path: "/program",
+    children: [
+      { label: "Full-Stack Development", path: "/program/fullstack", icon: <FiCode /> },
+      { label: "Data & AI", path: "/program/data-ai", icon: <FiCpu /> },
+      { label: "Career Launchpad", path: "/program/career", icon: <FiTrendingUp /> }
+    ]
+  },
   { label: "Reviews", path: "/reviews" },
-  { label: "Hire with Us", path: "/hire" }
+  { label: "Placements", path: "/placements" }
 ];
+
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
+  const navRef = useRef(null);
 
-  const closeMenu = () => setOpen(false);
+  const closeMenu = () => {
+    setOpen(false);
+    setOpenMenu(null);
+  };
+
+  /* CLICK OUTSIDE → CLOSE DROPDOWN */
+  useEffect(() => {
+    const handleOutside = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setOpenMenu(null);
+      }
+    };
+    document.addEventListener("click", handleOutside);
+return () => document.removeEventListener("click", handleOutside);
+}, []);
 
   return (
     <>
-      {/* ================= HEADER ================= */}
       <header className="glass-header">
         <div className="glass-nav">
-
           {/* LOGO */}
           <div className="glass-logo">
             <Link to="/" onClick={closeMenu}>
@@ -31,19 +71,45 @@ export default function Header() {
           </div>
 
           {/* DESKTOP NAV */}
-          <nav className="glass-links">
-            {navItems.map(({ label, path }) => (
-              <NavLink
-                key={label}
-                to={path}
-                end
-                className={({ isActive }) =>
-                  `glass-link ${isActive ? "active" : ""}`
-                }
-              >
-                {label}
-              </NavLink>
-            ))}
+          <nav className="glass-links" ref={navRef}>
+            {navItems.map((item) => {
+              const isOpen = openMenu === item.label;
+
+              return (
+                <div className="nav-item" key={item.label}>
+                  {item.children ? (
+                    <button
+                      className={`glass-link ${isOpen ? "open" : ""}`}
+                      onClick={() =>
+                        setOpenMenu(isOpen ? null : item.label)
+                      }
+                    >
+                      {item.label}
+                    </button>
+                  ) : (
+                    <NavLink to={item.path} className="glass-link">
+                      {item.label}
+                    </NavLink>
+                  )}
+
+                  {item.children && isOpen && (
+                    <div className="glass-dropdown">
+                      {item.children.map((child) => (
+                        <NavLink
+                          key={child.label}
+                          to={child.path}
+                          className="dropdown-item"
+                          onClick={() => setOpenMenu(null)}
+                        >
+                          <span className="dropdown-icon">{child.icon}</span>
+                          <span className="dropdown-text">{child.label}</span>
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </nav>
 
           {/* ACTIONS */}
@@ -52,31 +118,24 @@ export default function Header() {
               <button className="glass-login">Login</button>
             </Link>
 
-            {/* BURGER */}
             <button
               className={`glass-burger ${open ? "open" : ""}`}
               onClick={() => setOpen(!open)}
-              aria-label="Toggle Menu"
-              aria-expanded={open}
             >
               <span />
               <span />
             </button>
           </div>
-
         </div>
       </header>
 
-      {/* ================= MOBILE MENU ================= */}
+      {/* MOBILE MENU */}
       <div className={`glass-mobile ${open ? "show" : ""}`}>
         {navItems.map(({ label, path }) => (
           <NavLink
             key={label}
             to={path}
-            end
-            className={({ isActive }) =>
-              `glass-mobile-link ${isActive ? "active" : ""}`
-            }
+            className="glass-mobile-link"
             onClick={closeMenu}
           >
             {label}

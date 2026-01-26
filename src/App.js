@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import StudentRegister from './components/StudentRegister';
 import Footer from './components/Footer';
 import Program from './components/Program';
+import Placements from './components/Placements';
 
 
 function App() {
@@ -14,10 +15,11 @@ function App() {
     <>
      <Routes>
      <Route path="/" element={<><Header/><Home/><Footer/></>}/>
-     <Route path="/program" element={<><Header/><Program/><Footer/></>}/>
+     <Route path="/program/fullstack" element={<><Header/><Program/><Footer/></>}/>
      <Route path="/login" element={<Login/>}/>
      <Route path="/code-playground" element={<CodePlayground/>}/>
      <Route path="/register" element={<StudentRegister/>}/>
+     <Route path="/placements" element={<><Header/><Placements/><Footer/></>}/>
     </Routes>
     </>
   );
